@@ -140,6 +140,16 @@ $('#reset-button').on('click',() => {
 	updateChartWithScatterPlots(formattedData[0]);
 	
 });
+console.log($("#date-slider"))
+$("#date-slider").slider({
+	min: 1800,
+	max: 2014,
+	step: 1,
+	slide: (event, ui) => {
+		time = ui.value - 1800
+		updateChartWithScatterPlots(formattedData[time])
+	}
+});
 function step() {
 	time = (time < 214) ? time + 1 : 0
 	updateChartWithScatterPlots(formattedData[time]);
@@ -179,4 +189,6 @@ circles.enter().append("circle")
 
 // update the time label
 timeLabel.text(String(time + 1800))
+$('#year')[0].innerHTML = +(time+1800);
+$('#date-slider').slider('value', +(time+1800));
 }
